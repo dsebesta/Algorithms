@@ -72,7 +72,11 @@ if(!Array.prototype.equals) {
 var z = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 function fillArray(a, value) {
-  // fill it
+    if (!value) {value = 0;}
+    for (var i=0; i < a.length; i++) {
+        a.splice(i,1,value)
+    }
+    return a;
 }
 
 console.log("zero(z): " + (fillArray(z).equals([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])));
@@ -84,7 +88,11 @@ console.log("zero(z, 5): " + (fillArray(z, 5).equals([5, 5, 5, 5, 5, 5, 5, 5, 5,
 var a = [1, 2, 3, 4, 5, 6, 7, 8];
 
 function sum(a) {
-  // Return sum
+  var total = 0;
+  for (var i=0; i<a.length; i++) {
+    total += a[i]
+  }
+  return total
 }
 
 console.log("sum(a): " + (sum(a) === 36));
@@ -94,7 +102,11 @@ console.log("sum(a): " + (sum(a) === 36));
 var a1 = [23, 17, 23, 42, 8, 2, 73, 101, 83, 92];
 
 function average(a) {
-  // return average
+  var total = 0;
+  for (var i=0; i<a.length; i++) {
+    total += a[i]
+  }
+  return total / a.length
 }
 
 console.log("average(a1): " + (average(a1) === 46.4));
@@ -106,7 +118,14 @@ var a2 = [1,2,4,4,6,7,8,9,12];
 var a3 = [4,5,9,10,11,15,22,20,21,21];
 
 function median(a) {
-  // return median
+  var low = a[0],
+      high = a[0];
+  for (var i = 1; i < a.length; i++) {
+    //maybe sort then take the first and last number?
+    if (a[i] > high) {high = a[i]}
+    else if (a[i] < low) {low = a[i]}
+  }
+  return parseInt((high - low) / 2 + low)
 }
 
 console.log("median(a2): " + (median(a2) === 6));
