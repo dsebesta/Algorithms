@@ -150,8 +150,11 @@ console.log("findIndex('three'): " + (findIndex(a4, "three") === 3));
 //
 var a5 = [4, 3, 8, 8, 6, 9, 10, 12, 10, 9, 0, 5, 16, 2];
 
+
+//TODO cleanup this function so it only checks win after increasing counter
 function findNthLastOdd(a, n) {
-    var counter = 0, i = a.length - 1;
+    var counter = 0,
+        i = a.length - 1;
     while (counter !== n && i !== -2) {
         if (a[i] % 2 !== 0 && a[i] !== 0) {
             counter++;
