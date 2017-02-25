@@ -54,84 +54,116 @@
 //  serve as a glorious warm-up to the next few topics.
 //
 
-// [ ] Fill any array with value, zero if none provided, return original array
-// [ ] Return the sum of all values in any array
-// [ ] Return the average value of any array
-// [ ] Return the median of any array that has both an odd and even number of values
-// [ ] Return the index the value specified, or null if not found
-// [ ] Return index of nth last odd in any array, 1 being the fist, etc., null = not found
-//    [ ] Use only a single iteration
-// [ ] Select a range of values in any array, return the average of the values of the range
-// [ ] Copy contents of one array to another.  Do not use any built-in functions.
-// [ ] Swap two elements in an array.  Return the same array passed in.  Do not use any built-in functions.
+// [X] Fill any array with value, zero if none provided, return original array
+// [X] Return the sum of all values in any array
+// [X] Return the average value of any array
+// [X] Return the median of any array that has both an odd and even number of values
+// [X] Return the index the value specified, or null if not found
+// [X] Return index of nth last odd in any array, 1 being the fist, etc., null = not found
+//    [X] Use only a single iteration
+// [X] Select a range of values in any array, return the average of the values of the range
+// [X] Copy contents of one array to another.  Do not use any built-in functions.
+// [X] Swap two elements in an array.  Return the same array passed in.  Do not use any built-in functions.
 //
 
 
 
 
-// [ ] Fill any array with value, zero if none provided, return original array
+// [X] Fill any array with value, zero if none provided, return original array
 //
 var z = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 function fillArray(a, value) {
-  // fill it
+    if (!value) {value = 0;}
+    for (var i = 0; i < a.length; i++) {
+        a[i] = value;
+    }
+    return a;
 }
 
 console.log("zero(z): " + (fillArray(z).equals([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])));
 console.log("zero(z, 5): " + (fillArray(z, 5).equals([5, 5, 5, 5, 5, 5, 5, 5, 5, 5])));
 
 
-// [ ] Return the sum of all values in any array
+// [X] Return the sum of all values in any array
 //
 var a = [1, 2, 3, 4, 5, 6, 7, 8];
 
 function sum(a) {
-  // Return sum
+    for (var i = 0, total=0; i < a.length; i++) {
+        total += a[i]
+    }
+    return total
 }
 
 console.log("sum(a): " + (sum(a) === 36));
 
-// [ ] Return the average value of any array
+// [X] Return the average value of any array
 //
 var a1 = [23, 17, 23, 42, 8, 2, 73, 101, 83, 92];
 
 function average(a) {
-  // return average
+    for (var i = 0, total=0; i < a.length; i++) {
+        total += a[i]
+    }
+    return total / a.length
 }
 
 console.log("average(a1): " + (average(a1) === 46.4));
 
 
-//  [ ] Return the median of any array that has both an odd and even number of values
+//  [X} Return the median of any array that has both an odd and even number of values
 //
 var a2 = [1,2,4,4,6,7,8,9,12];
 var a3 = [4,5,9,10,11,15,22,20,21,21];
 
 function median(a) {
-  // return median
+    var middle = a.length / 2;
+    if (a.length % 2 !== 0) {
+        return a[parseInt(middle)]
+    }
+    return (a[middle-1] + a[middle]) / 2
 }
 
 console.log("median(a2): " + (median(a2) === 6));
 console.log("median(a3): " + (median(a3) === 13));
 
 
-// [ ] Return the index the value specified, or null if not found
+// [X] Return the index the value specified, or null if not found
 //
 var a4 = ["zero", "one", "two", "three", "four", "five"];
 
 function findIndex(a, value) {
-  // return index or null
+    for (var i = 0; i < a.length; i++) {
+        if (value === a[i]) {
+            return i
+        }
+    }
+    return null
 }
 
 console.log("findIndex('three'): " + (findIndex(a4, "three") === 3));
 
-// [ ] Return index of nth last odd in any array, 1 being the fist, etc., null = not found
-// [ ] Use only a single iteration
+// [X] Return index of nth last odd in any array, 1 being the fist, etc., null = not found
+// [X] Use only a single iteration
 //
 var a5 = [4, 3, 8, 8, 6, 9, 10, 12, 10, 9, 0, 5, 16, 2];
 
 function findNthLastOdd(a, n) {
-  // return nth last add
+    var counter = 0,
+        i = a.length - 1;
+    while (counter !== n && i !== -2) {
+        if (a[i] % 2 !== 0 && a[i] !== 0) {
+            counter++;
+        }
+        i--
+    }
+    if (i === -2) {
+        return 'cannot be found'
+    }
+    else {
+        return i+1;
+    }
 }
 
 console.log("findNthLastOdd(a5, 1): " + (findNthLastOdd(a5, 1) === 11));
@@ -139,36 +171,45 @@ console.log("findNthLastOdd(a5, 2): " + (findNthLastOdd(a5, 2) === 9));
 console.log("findNthLastOdd(a5, 4): " + (findNthLastOdd(a5, 4) === 1));
 
 
-// [ ] Select a range of values in any array, return the average of the values of the range
+// [X] Select a range of values in any array, return the average of the values of the range
 //
 var a6 = [0, 1, 2, 3, 4, 5, 10, 15, 23, 54, 22, 1, 8, 4, 2, 2, 2, 0, 1];
 
 function getAverageOfRange(a, start, end) {
-  // return average of values selected from a subarray
+    for (var i = start, total=0; i <= end; i++) {
+        total += a[i]
+    }
+    return total / a.length
 }
 
 console.log("getAverageOfRange(a6, 5, 9): " + (getAverageOfRange(a6, 5, 9) === 21.4));
 
 
-// [ ] Copy contents of one array to another.  Do not use any built-in functions.
+// [X] Copy contents of one array to another.  Do not use any built-in functions.
 //
 var a7 = [0, 10, 20, 30, 35, 55, 75, 100];
 var b7 = [];
 
 function copyArray(source, target) {
-  // return copy
+  for (var i=0; i<source.length;i++) {
+    target[i] = source[i]
+  }
 }
 
+copyArray(a7, b7);
 console.log("copyArray(a7, b7): " + (a7.equals(b7)));
 
 
 
-// [ ] Swap two elements in an array.  Return the same array passed in.  Do not use any built-in functions.
+// [X] Swap two elements in an array.  Return the same array passed in.  Do not use any built-in functions.
 //
 var a8 = [1, 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37];
 
 function swap(a, indexSource, indexTarget) {
-  // swap 'em
+  var temp = a[indexSource];
+  a[indexSource] = a[indexTarget];
+  a[indexTarget] = temp;
+  return a;
 }
 
 console.log("swap(a8, 1, 11): " + (swap(a8, 1, 11).equals([1, 31, 3, 5, 7, 11, 13, 17, 19, 23, 29, 2, 37])));
