@@ -92,15 +92,19 @@ var Vector = function(initialCapacity, maxCapacity) {
 
 Vector.prototype.insert = function(index, value) {
   this.storage.splice(index, 0, value);
+  this.length++;
+  this.resize();
 };
 
 
 Vector.prototype.add = function(value) {
   this.storage[this.length++] = value;
+  this.resize();
 };
 
 
 Vector.prototype.remove = function(index) {
+  this.length--;
   if (index === undefined || index === null) {
     delete this.storage[this.length];
   }
@@ -121,7 +125,10 @@ Vector.prototype.set = function(index, value) {
 
 
 Vector.prototype.resize = function() {
-  // ...
+  if (this.length > this.capacity && (this.capacity * 2) <= this.max) {
+      this.capacity *= 2;
+  }
+
 };
 
 
