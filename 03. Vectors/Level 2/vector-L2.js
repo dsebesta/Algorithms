@@ -88,17 +88,32 @@ var Vector = function(initialCapacity, maxCapacity) {
 
 
 Vector.prototype.insert = function(index, value) {
-  // ...
+    if (this.length + 1 > this.capacity) {
+        this.resize();
+    }
+    for (var i = this.length++; i > index; i--) {
+        this.set(i, this.storage[i-1])
+    }
+    this.set(index, value);
 };
 
 
 Vector.prototype.add = function(value) {
-  // ...
+  if (this.length + 1 > this.capacity) {
+    this.resize();
+  }
+  this.set(this.length++, value);
 };
 
 
 Vector.prototype.remove = function(index) {
-  // ...
+    for (var i = index; i < this.length - 1; i++) {
+        this.set(i, this.storage[i+1])
+    }
+    this.length--;
+    if (this.length / this.capacity < .25) { // I ended up putting this here since you already created the resize function.
+        this.capacity /= 2;
+    }
 };
 
 
