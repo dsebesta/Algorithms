@@ -17,7 +17,7 @@ var LinkedListNode = function(data, next) {
 
 var LinkedList = function() {
     this.head = new LinkedListNode('1 - original head', null);
-    this.tail = null;
+    this.tail = this.head;
 };
 
 
