@@ -110,7 +110,7 @@ LinkedList.prototype.set = function(index, value) {
 
 LinkedList.prototype.contains = function(value) {
     var currentNode = this.head;
-    while(currentNode.data !== value && currentNode !== this.tail) {
+    while(currentNode.data !== value) {
       currentNode = currentNode.next;
     }
     if (currentNode === this.tail) {
