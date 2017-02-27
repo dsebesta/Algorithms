@@ -24,10 +24,9 @@ var DoublyLinkedListNode = function(data, next, previous) {
 };
 
 var DoublyLinkedList = function() {
-  this.head = new DoublyLinkedListNode('3 - original head', null, null);
+  this.head = new DoublyLinkedListNode(4, null, null);
   this.tail = this.head;
 };
-
 
 
 DoublyLinkedList.prototype.insert = function(index, value) {
@@ -161,22 +160,67 @@ DoublyLinkedList.prototype.contains = function(value) {
 
 };
 
+DoublyLinkedList.prototype.nthOddNumberFromTail = function(nthOddFromTail) {
+    var currentNode = this.tail;
+    var keepGoing = true;
+    var indexCounter = 0;
+    var oddFound = {
+        position: null,
+        count: null
+    };
+    while (keepGoing) {
+        indexCounter++;
+        if (currentNode.data%2 !== 0 && oddFound.count < nthOddFromTail) {
+            oddFound.position = indexCounter;
+            oddFound.count ++;
+            console.log('odd number found: ' + currentNode.data);
+        }
+        if (currentNode === this.head) {
+            keepGoing = false;
+        }
+        else {
+            currentNode = currentNode.previous
+        }
+    }
+    if (oddFound.count < nthOddFromTail) {
+        return 'not enough odd numbers found'
+    }
+    else {
+        return indexCounter - oddFound.position;
+    }
+
+};
+
+
 var dll = new DoublyLinkedList();
-dll.insert(null, '1 - first insert');
-dll.insert(null, '2 - second insert');
-dll.insert(0, '0 - inserted to head');
-dll.insert(1, '0.5 - inserted after head');
-dll.insertAfter(dll.head.next.next.next, '2.5 - inserted after 2');
-dll.insertBefore(dll.head.next, '0.25 - inserted before 0.5');
-dll.remove(); // should remove 3 - original head
-dll.remove(0); // should remove 0 - inserted to head
-dll.remove(2); // should remove 1 - first insert
-console.log(dll.get(1)); // should return .5 - inserted after head
-dll.set(0, 'new head');
-dll.insert(null, 'containCheck');
-console.log('should be 1: ' + dll.contains('containCheck'));
-dll.insert(null, 'containCheck');
-console.log('should be 2: ' + dll.contains('containCheck'));
-dll.insertAfter(this.tail, 'containCheck');
-console.log('should be 3: ' + dll.contains('containCheck'));
+// dll.insert(null, '1 - first insert');
+// dll.insert(null, '2 - second insert');
+// dll.insert(0, '0 - inserted to head');
+// dll.insert(1, '0.5 - inserted after head');
+// dll.insertAfter(dll.head.next.next.next, '2.5 - inserted after 2');
+// dll.insertBefore(dll.head.next, '0.25 - inserted before 0.5');
+// dll.remove(); // should remove 3 - original head
+// dll.remove(0); // should remove 0 - inserted to head
+// dll.remove(2); // should remove 1 - first insert
+// console.log(dll.get(1)); // should return .5 - inserted after head
+// dll.set(0, 'new head');
+// dll.insert(null, 'containCheck');
+// console.log('should be 1: ' + dll.contains('containCheck'));
+// dll.insert(null, 'containCheck');
+// console.log('should be 2: ' + dll.contains('containCheck'));
+// dll.insertAfter(this.tail, 'containCheck');
+// console.log('should be 3: ' + dll.contains('containCheck'));
+// console.log(dll);
+
+dll.insert(null, 23);
+dll.insert(null, 12);
+dll.insert(null, 6);
+dll.insert(null, 9);
+dll.insert(null, 1);
+dll.insert(null, 45);
+dll.insert(null, 62);
+dll.insert(null, 13);
+dll.insert(null, 4);
 console.log(dll);
+console.log('3rd odd number from the tail found at position: ' + dll.nthOddNumberFromTail(3));
+
